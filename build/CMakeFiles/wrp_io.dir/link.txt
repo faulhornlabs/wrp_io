@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libwrp_io.a  CMakeFiles/wrp_io.dir/src/async_serial.cpp.o CMakeFiles/wrp_io.dir/src/async_can.cpp.o
+/usr/bin/ranlib lib/libwrp_io.a

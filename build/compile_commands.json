@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/rdu/Workspace/weston_robot/devel/wrp_io/build",
+  "command": "/usr/bin/c++  -DASIO_STANDALONE -I/home/rdu/Workspace/weston_robot/devel/wrp_io/include -I/home/rdu/Workspace/weston_robot/devel/wrp_io/src -I/home/rdu/Workspace/weston_robot/devel/wrp_io/include/asio/include  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/wrp_io.dir/src/async_serial.cpp.o -c /home/rdu/Workspace/weston_robot/devel/wrp_io/src/async_serial.cpp",
+  "file": "/home/rdu/Workspace/weston_robot/devel/wrp_io/src/async_serial.cpp"
+},
+{
+  "directory": "/home/rdu/Workspace/weston_robot/devel/wrp_io/build",
+  "command": "/usr/bin/c++  -DASIO_STANDALONE -I/home/rdu/Workspace/weston_robot/devel/wrp_io/include -I/home/rdu/Workspace/weston_robot/devel/wrp_io/src -I/home/rdu/Workspace/weston_robot/devel/wrp_io/include/asio/include  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/wrp_io.dir/src/async_can.cpp.o -c /home/rdu/Workspace/weston_robot/devel/wrp_io/src/async_can.cpp",
+  "file": "/home/rdu/Workspace/weston_robot/devel/wrp_io/src/async_can.cpp"
+}
+]
