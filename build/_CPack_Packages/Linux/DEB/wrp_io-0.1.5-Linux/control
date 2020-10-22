@@ -1,9 +1,0 @@
-Architecture: amd64
-Description: Weston Robot Platform - Linux Driver for IO
-Maintainer: Ruixiang Du (ruixiang.du@westonrobot.com)
-Package: wrp_io
-Priority: optional
-Section: devel
-Version: 0.1.5
-Installed-Size: 4970
-
