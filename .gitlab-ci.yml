@@ -12,6 +12,8 @@ xenial-cpp-build:
 xenial-cpp-test:
   stage: test
   image: rduweston/ubuntu-ci:16.04
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
   # before_script:
   #   - apt update && apt -y install libasio-dev
   script:
@@ -42,6 +44,8 @@ bionic-cpp-build:
 bionic-cpp-test:
   stage: test
   image: rduweston/ubuntu-ci:18.04
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
   # before_script:
   #   - apt update && apt -y install libasio-dev
   script:
@@ -65,6 +69,8 @@ focal-cpp-build:
 focal-cpp-test:
   stage: test
   image: rduweston/ubuntu-ci:20.04
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
   # before_script:
   #   - apt update && apt -y install libasio-dev
   script:
