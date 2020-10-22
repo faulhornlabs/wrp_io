@@ -184,7 +184,4 @@ else() # BUILD_WITHOUT_ROS
     install(FILES include/asio/include/asio.hpp
       DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION})
 
-    install(DIRECTORY scripts
-      DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
 endif() # BUILD_WITHOUT_ROS
