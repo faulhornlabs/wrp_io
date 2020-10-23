@@ -1,8 +1,8 @@
 # Google tests
 message(STATUS "Build unit tests with Google Test.")
-if(${CMAKE_MAJOR_VERSION} STRGREATER_EQUAL 3)
-    if(${CMAKE_MINOR_VERSION} STRGREATER_EQUAL 10)
-        if(${CMAKE_PATCH_VERSION} STRGREATER_EQUAL 2)
+if(NOT (${CMAKE_MAJOR_VERSION} STRLESS 3))
+    if(NOT (${CMAKE_MINOR_VERSION} STRLESS 10))
+        if(NOT (${CMAKE_PATCH_VERSION} STRLESS 2))
             include(GoogleTest)
         endif()
     endif()
