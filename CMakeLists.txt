@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13.0)
+cmake_minimum_required(VERSION 3.5.1)
 project(wrp_io VERSION 0.1.5)
 
 find_program(CCACHE_PROGRAM ccache)
@@ -70,7 +70,12 @@ endif()
 find_package(Threads REQUIRED)
 
 # import asio library
-add_subdirectory(include/asio)
+# add_subdirectory(include/asio)
+add_library(asio INTERFACE)
+target_compile_definitions(asio INTERFACE "-DASIO_STANDALONE")
+target_include_directories(asio INTERFACE
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/asio/include>
+	$<INSTALL_INTERFACE:include>)
 
 add_library(${PROJECT_NAME} 
     src/async_serial.cpp

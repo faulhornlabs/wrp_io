@@ -1,7 +1,7 @@
 ## Build and test as standard C++ package
 xenial-cpp-build:
   stage: build
-  image: rduweston/ubuntu-ci:16.04
+  image: rduweston/ubuntu-ci:16.04-min
   # before_script:
   #   - apt update && apt -y install libasio-dev
   script:
