@@ -1,8 +1,16 @@
 # Google tests
 message(STATUS "Build unit tests with Google Test.")
-if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.10.2")
-    include(GoogleTest)
+if(${CMAKE_MAJOR_VERSION} STRGREATER_EQUAL 3)
+    if(${CMAKE_MINOR_VERSION} STRGREATER_EQUAL 10)
+        if(${CMAKE_PATCH_VERSION} STRGREATER_EQUAL 2)
+            include(GoogleTest)
+        endif()
+    endif()
 endif()
+# The following condition check won't work with cmake 3.5.1
+# if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.10.2")
+#     include(GoogleTest)
+# endif()
 add_subdirectory(googletest)
 
 # reference: https://cliutils.gitlab.io/modern-cmake/chapters/testing/googletest.html
@@ -13,8 +21,8 @@ mark_as_advanced(
 )
 
 # add unit tests
-set(GRAPH_TESTS
+set(UINT_TESTS
     unit_tests/ringbuf_test.cpp
 )
-add_executable(gtest_all ${GRAPH_TESTS})
+add_executable(gtest_all ${UINT_TESTS})
 target_link_libraries(gtest_all gtest gmock gtest_main wrp_io)
