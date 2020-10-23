@@ -91,7 +91,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 if(PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME AND BUILD_TESTS)
     message(STATUS "Tests will be built")
     enable_testing()
-    include(GoogleTest)
     add_subdirectory(test)
 else()
     message(STATUS "Tests will not be built")

@@ -1,5 +1,8 @@
 # Google tests
 message(STATUS "Build unit tests with Google Test.")
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.10.2")
+    include(GoogleTest)
+endif()
 add_subdirectory(googletest)
 
 # reference: https://cliutils.gitlab.io/modern-cmake/chapters/testing/googletest.html
