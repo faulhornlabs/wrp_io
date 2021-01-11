@@ -17,6 +17,7 @@
 
 #include "wrp_io/async_listener.hpp"
 #include "wrp_io/ring_buffer.hpp"
+#include <asio/serial_port.hpp>
 
 namespace westonrobot {
 class AsyncSerial : public AsyncListener,

@@ -17,6 +17,8 @@
 
 #include "asio.hpp"
 
+#include <string>
+
 namespace westonrobot {
 class AsyncListener {
  public:

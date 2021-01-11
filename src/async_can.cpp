@@ -9,13 +9,14 @@
 
 #include "wrp_io/async_can.hpp"
 
+#ifndef _MSC_VER
 #include <net/if.h>
 #include <poll.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <linux/can.h>
-
+#endif
 #include <iostream>
 
 namespace westonrobot {
@@ -23,6 +24,7 @@ AsyncCAN::AsyncCAN(std::string can_port)
     : AsyncListener(can_port), socketcan_stream_(io_context_) {}
 
 bool AsyncCAN::SetupPort() {
+#ifndef _MSC_VER
   try {
     const size_t iface_name_size = strlen(port_.c_str()) + 1;
     if (iface_name_size > IFNAMSIZ) return false;
@@ -58,10 +60,13 @@ bool AsyncCAN::SetupPort() {
   asio::post(io_context_,
              std::bind(&AsyncCAN::ReadFromPort, this, std::ref(rcv_frame_),
                        std::ref(socketcan_stream_)));
+#endif
   return true;
 }
 
 void AsyncCAN::StopService() {
+#ifndef _MSC_VER
+
   // release port fd
   const int close_result = ::close(can_fd_);
   can_fd_ = -1;
@@ -72,6 +77,7 @@ void AsyncCAN::StopService() {
   io_context_.reset();
 
   port_opened_ = false;
+#endif
 }
 
 void AsyncCAN::DefaultReceiveCallback(can_frame *rx_frame) {
@@ -83,6 +89,8 @@ void AsyncCAN::DefaultReceiveCallback(can_frame *rx_frame) {
 
 void AsyncCAN::ReadFromPort(struct can_frame &rec_frame,
                             asio::posix::basic_stream_descriptor<> &stream) {
+#ifndef _MSC_VER
+
   auto sthis = shared_from_this();
   stream.async_read_some(
       asio::buffer(&rec_frame, sizeof(rec_frame)),
@@ -100,9 +108,12 @@ void AsyncCAN::ReadFromPort(struct can_frame &rec_frame,
         sthis->ReadFromPort(std::ref(sthis->rcv_frame_),
                             std::ref(sthis->socketcan_stream_));
       });
+#endif
 }
 
 void AsyncCAN::SendFrame(const can_frame &frame) {
+#ifndef _MSC_VER
+
   socketcan_stream_.async_write_some(
       asio::buffer(&frame, sizeof(frame)),
       [](asio::error_code error, size_t bytes_transferred) {
@@ -111,6 +122,7 @@ void AsyncCAN::SendFrame(const can_frame &frame) {
         }
         // std::cout << "frame sent" << std::endl;
       });
+#endif
 }
 
 }  // namespace westonrobot

@@ -18,9 +18,14 @@
 
 #include <memory>
 
+#ifndef _MSC_VER
 #include "asio/posix/basic_stream_descriptor.hpp"
-
+#else
+#include "asio/posix/win_basic_stream_descriptor.hpp"
+#endif
 #include "wrp_io/async_listener.hpp"
+#include <functional>
+#include <string>
 
 namespace westonrobot {
 class AsyncCAN : public AsyncListener,
@@ -38,15 +43,14 @@ class AsyncCAN : public AsyncListener,
 
  private:
   int can_fd_;
+  ReceiveCallback rcv_cb_ = nullptr;
   asio::posix::basic_stream_descriptor<> socketcan_stream_;
 
   struct can_frame rcv_frame_;
-  ReceiveCallback rcv_cb_ = nullptr;
-
+  void ReadFromPort(struct can_frame& rec_frame,
+      asio::posix::basic_stream_descriptor<>& stream);
   bool SetupPort();
   void DefaultReceiveCallback(can_frame *rx_frame);
-  void ReadFromPort(struct can_frame &rec_frame,
-                    asio::posix::basic_stream_descriptor<> &stream);
 };
 }  // namespace westonrobot
 
