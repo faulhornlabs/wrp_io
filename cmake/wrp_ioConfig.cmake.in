@@ -8,7 +8,7 @@ find_dependency(Threads REQUIRED)
 
 # Any extra setup
 
-if (MSVC)
+if (MSVC AND NOT TARGET asio::asio)
     find_package(asio CONFIG REQUIRED)
     add_library(westonrobot::asio ALIAS asio::asio)
 endif()
