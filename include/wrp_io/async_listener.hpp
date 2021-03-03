@@ -23,7 +23,10 @@ namespace westonrobot {
 class AsyncListener {
  public:
   AsyncListener(std::string port) : port_(port) {}
-  virtual ~AsyncListener(){};
+  virtual ~AsyncListener(){
+      if (io_thread_.joinable())
+          io_thread_.join();
+  };
 
   // do not allow copy
   AsyncListener() = delete;
